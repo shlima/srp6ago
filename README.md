@@ -1,17 +1,17 @@
 # srp6ago
 
-[![Test](https://github.com/oka-is/srp6ago/actions/workflows/test.yml/badge.svg)](https://github.com/oka-is/srp6a-webcrypto/actions/workflows/test.yml)
+[![Test](https://github.com/wault-pw/srp6ago/actions/workflows/test.yml/badge.svg)](https://github.com/wault-pw/srp6a-webcrypto/actions/workflows/test.yml)
 
 This is tiny golang SRP6a implementation
 fully complies with the RFC-5054/RFC-2945.
 
-This server is used with [javascript](https://github.com/oka-is/srp6a-webcrypto) 
+This server is used with [javascript](https://github.com/wault-pw/srp6a-webcrypto) 
 SRP6a client implementation.
 
 ## Installation
 
 ```bash
-go get github.com/oka-is/srp6ago
+go get github.com/wault-pw/srp6ago
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ with JSON).
 package main
 
 import (
-    "github.com/oka-is/srp6ago"
+    "github.com/wault-pw/srp6ago"
 )
 
 func main() {
@@ -72,7 +72,7 @@ Preconfigured RFC-5054 SRP Group Parameters:
 package main
 
 import (
-    "github.com/oka-is/srp6ago"
+    "github.com/wault-pw/srp6ago"
 )
 
 func main() {
