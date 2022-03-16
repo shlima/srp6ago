@@ -78,9 +78,14 @@ func (s *Server) set_b(input []byte) {
 	s.b = new(big.Int).SetBytes(input)
 }
 
-func (s *Server) SetClientPublicKey(A []byte) {
+func (s *Server) SetClientPublicKey(A []byte) error {
 	s.A = new(big.Int).SetBytes(A)
 	s.u = new(big.Int).SetBytes(s.e.HASH(s.e.PAD(s.A.Bytes()), s.e.PAD(s.B.Bytes())))
+
+	// The host MUST abort the authentication attempt if A % N is zero.
+	if s.e.isModZero(s.A, s.e.N) {
+		return ErrAbort
+	}
 
 	i1 := new(big.Int).Exp(s.v, s.u, s.e.N)
 	i2 := new(big.Int).Mul(i1, s.A)
@@ -88,6 +93,8 @@ func (s *Server) SetClientPublicKey(A []byte) {
 
 	s.m1 = s.e.HASH(s.e.PAD(s.A.Bytes()), s.e.PAD(s.B.Bytes()), s.e.PAD(s.S))
 	s.m2 = s.e.HASH(s.e.PAD(s.A.Bytes()), s.m1, s.e.PAD(s.S))
+
+	return nil
 }
 
 func (s *Server) IsProofValid(m1 []byte) bool {

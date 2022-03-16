@@ -57,7 +57,9 @@ C346D7E4 74B29EDE 8A469FFE CA686E5A`)
 		require.NoError(t, err)
 		require.Equal(t, B, pub, "B")
 
-		server.SetClientPublicKey(A)
+		err = server.SetClientPublicKey(A)
+		require.NoError(t, err)
+
 		server = MustMarshalServer(t, server)
 		require.Equal(t, u, server.u.Bytes(), "u")
 		require.Equal(t, S, server.S, "S")
