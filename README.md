@@ -41,7 +41,10 @@ func main() {
 	
 	// 2) retrieve client's public key and a proof
 	clientPublicKey, clientProof := []byte{}, []byte{}
-	server.SetClientPublicKey(clientPublicKey)
+	err := server.SetClientPublicKey(clientPublicKey)
+	if err != nil {
+        panic("server aborts")
+	}
 	
 	// 3) Validate client proof
 	// if OK, user is authenticates

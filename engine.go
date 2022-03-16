@@ -59,3 +59,7 @@ func (e *engine) Random(len int) ([]byte, error) {
 	_, err := io.ReadFull(rand.Reader, out)
 	return out, err
 }
+
+func (e *engine) isModZero(a *big.Int, b *big.Int) bool {
+	return new(big.Int).Mod(a, b).Sign() == 0
+}
